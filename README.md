@@ -1,8 +1,9 @@
-Youtube Download 
+#Youtube Download 
 
-Instructions :
-Run the following command
+##Instructions :
 
-python youtube-dl.py <youtube link>
+###Run the following command
 
-That's all Folks
+python youtube-dl.py \<youtube_link\>
+
+##That's all Folks!!
