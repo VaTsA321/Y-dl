@@ -1,4 +1,4 @@
-Youtube DOwnload 
+Youtube Download 
 
 Instructions :
 1) python youtube-dl.py <youtube link>
