@@ -4,6 +4,12 @@ import os
 import sys
 import re
 
+def dlProgress(count, blockSize, totalSize):
+      percent = int(count*blockSize*100/totalSize)
+      sys.stdout.write("%2d%%" % percent)
+      sys.stdout.write("\b\b\b")
+      sys.stdout.flush()
+
 def video_get(video_id):
     url = 'http://www.youtube.com/get_video_info?video_id=' + video_id
     print(url)
@@ -23,9 +29,9 @@ def video_get(video_id):
             main_url = etry['url']
             break
     print('Downloading...')
-    urlretrieve(main_url, title)
-    print('Done')
-    
+    urlretrieve(main_url, title, reporthook=dlProgress)
+    print('\nDone')
+
 def main():
     link = sys.argv[1]
     video_id = re.search(r'watch\?v=(\S+)', link).group(1)
