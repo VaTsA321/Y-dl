@@ -1,5 +1,5 @@
-from urllib.request import urlretrieve, urlopen
-from urllib.parse import parse_qs
+from urllib import urlretrieve, urlopen
+from urlparse import parse_qs
 import os
 import sys
 import re
@@ -16,7 +16,7 @@ def video_get(video_id):
     html = (urlopen(url).read())
     kk  = html.decode('utf-8')
     info = parse_qs(kk)
-    title = info['title'][0] + '.mp4'
+    title = str(info['title'][0]) + '.mp4'
     #print(title)
     url_encoded_fmt_stream_map = info['url_encoded_fmt_stream_map'][0].split(',')
     entrys = [parse_qs(entry) for entry in url_encoded_fmt_stream_map]
@@ -28,6 +28,9 @@ def video_get(video_id):
         if etry_type.lower() == type.lower():
             main_url = etry['url']
             break
+    #if not os.path.exists(title):
+	#f = open(title, "wb")
+	#f.close()
     print('Downloading...')
     urlretrieve(main_url, title, reporthook=dlProgress)
     print('\nDone')
